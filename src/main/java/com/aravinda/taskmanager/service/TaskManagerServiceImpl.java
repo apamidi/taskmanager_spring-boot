@@ -17,16 +17,6 @@ public class TaskManagerServiceImpl implements ITaskManagerService {
 	@Autowired
 	private ITaskManagerDAO taskManagerDAO;
 	
-	
-	
-	public ITaskManagerDAO getTaskManagerDAO() {
-		return taskManagerDAO;
-	}
-
-	public void setTaskManagerDAO(ITaskManagerDAO taskManagerDAO) {
-		this.taskManagerDAO = taskManagerDAO;
-	}
-
 	/*Save task details*/
 	@Override
 	@Transactional(rollbackFor={Exception.class})
@@ -61,6 +51,14 @@ public class TaskManagerServiceImpl implements ITaskManagerService {
 		
 		return taskManagerDAO.findByTaskId(taskId);
 		
+	}
+	
+	public ITaskManagerDAO getTaskManagerDAO() {
+		return taskManagerDAO;
+	}
+
+	public void setTaskManagerDAO(ITaskManagerDAO taskManagerDAO) {
+		this.taskManagerDAO = taskManagerDAO;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.aravinda.taskmanager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
@@ -25,6 +26,7 @@ import static org.hamcrest.Matchers.*;
 @AutoConfigureMockMvc
 @TestPropertySource(
   locations = "classpath:application-integrationtest.properties")
+/*TaskManagerController integration test*/
 public class TaskManagerControllerIntegrationTest {
 	
 	@Autowired
@@ -33,8 +35,12 @@ public class TaskManagerControllerIntegrationTest {
     @Autowired
     private ITaskManagerDAO taskManagerDAO;
     
+    @Value("${taskName}")
+    private String taskName;
+    
+    /* tests if the task data exists in the database*/
     @Test
-    public void givenEmployees_whenGetEmployees_thenStatus200()
+    public void givenTasks_whenGetTask_thenStatus200()
       throws Exception {
      
         createTestTask();
@@ -44,12 +50,13 @@ public class TaskManagerControllerIntegrationTest {
           .andExpect(status().isOk())
           .andExpect(content()
           .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andExpect(jsonPath("$[0].task", is("integration testing")));
+          .andExpect(jsonPath("$[0].task", is(taskName)));
     }
     
+    /*creates the new task*/
     private void createTestTask() {
         Task task = new Task();
-        task.setTask("integration testing");
+        task.setTask(taskName);
         taskManagerDAO.saveAndFlush(task);
     }
 

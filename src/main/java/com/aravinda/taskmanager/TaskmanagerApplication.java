@@ -15,24 +15,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages = {"com.aravinda.taskmanager.controller",
         "com.aravinda.taskmanager.dao",
         "com.aravinda.taskmanager.dto","com.aravinda.taskmanager.service"})
+/* Task Manager application starting class*/
 public class TaskmanagerApplication{
 	
-	/*@Autowired
-	private ITaskManagerDAO taskManagerDAO;*/
-	
+		
 	public static void main(String[] args) {
 		SpringApplication.run(TaskmanagerApplication.class, args);
 	}
 	
-	/*@Override
-	public void run(String... args) throws Exception {
-		Task task = new Task();
-		task.setTask("running");
-		
-		Task ptask=new Task();
-		ptask.setTask("walking12");
-		ptask.setParent(task);
-		
-		taskManagerDAO.save(ptask);
-	*/
+	
 }

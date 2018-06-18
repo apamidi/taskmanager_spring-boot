@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -20,7 +21,6 @@ import com.aravinda.taskmanager.dto.Task;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace=Replace.NONE)
 @SpringBootTest
-//@AutoConfigureMockMvc
 @TestPropertySource(
   locations = "classpath:application-integrationtest.properties")
 public class TaskManagerDAOTest {
@@ -30,6 +30,10 @@ public class TaskManagerDAOTest {
     @Autowired
     private ITaskManagerDAO taskManagerDAO;
     
+    @Value("${taskName}")
+    private String taskName;
+    
+    /*Tests if the task details is being returned for a particular task*/
     @Test
     public void whenFindById_thenReturnTask() {
         
@@ -40,10 +44,10 @@ public class TaskManagerDAOTest {
      
         // when
         Task taskdetails = taskManagerDAO.findByTaskId(task.getTaskId());
-     System.out.println("taskdetails>>>."+taskdetails.getTask());
+    
         // then
         assertThat(taskdetails.getTask())
-          .isEqualTo("integration testing");
+          .isEqualTo(taskName);
     }
 
 }

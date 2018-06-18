@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="task")
+/* Details of the task table*/
 public class Task {
 	
 	@Id

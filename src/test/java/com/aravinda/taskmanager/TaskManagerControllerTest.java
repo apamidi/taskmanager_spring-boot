@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -32,12 +33,16 @@ public class TaskManagerControllerTest {
     @MockBean
     private ITaskManagerService taskManagerService;
     
+    @Value("${task}")
+    private String tasknme;
+    
+    /*Tests if the task list is being returned from database*/    
     @Test
-    public void givenEmployees_whenGetEmployees_thenReturnJsonArray()
+    public void givenTasks_whenGetTasks_thenReturnJsonArray()
       throws Exception {
          
         Task task = new Task();
-        task.setTask("testing");
+        task.setTask(tasknme);
      
         List<Task> allTasks = Arrays.asList(task);
      

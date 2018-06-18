@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
@@ -35,24 +36,28 @@ public class TaskManagerServiceImplTest {
     @MockBean
     private ITaskManagerDAO taskManagerDAO;
     
+    @Value("${taskName}")
+    private String taskName;
+    
     @Before
     public void setUp() {
         Task task = new Task();
         task.setTaskId((long)1);
-        task.setTask("integration testing");
+        task.setTask(taskName);
         Mockito.when(taskManagerDAO.findByTaskId(task.getTaskId()))
           .thenReturn(task);
         taskManagerService.setTaskManagerDAO(taskManagerDAO);
         
     }
     
+    /*tests if the tasks details exist*/
     @Test
     public void whenValidName_thenTaskShouldBeFound() {
        
         Task taskdetails = taskManagerService.findByTaskId((long)1);
        
          assertThat(taskdetails.getTask())
-          .isEqualTo("integration testing");
+          .isEqualTo(taskName);
      }
 
 }

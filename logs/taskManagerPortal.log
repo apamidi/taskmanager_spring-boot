@@ -1,0 +1,6 @@
+2018-06-13 01:12:58 INFO  TaskManagerController:37 - Entered TaskManagerController - viewTask()
+2018-06-13 01:12:59 DEBUG TaskManagerController:39 - tasklist in TaskManagerController::viewTask[]
+2018-06-13 01:13:24 INFO  TaskManagerController:28 - Entered TaskManagerController - addTask()
+2018-06-13 01:13:24 DEBUG TaskManagerController:29 - task in TaskManagerController::addTaskcom.aravinda.taskmanager.dto.Task@1d0fcd6f
+2018-06-13 01:13:31 INFO  TaskManagerController:37 - Entered TaskManagerController - viewTask()
+2018-06-13 01:13:31 DEBUG TaskManagerController:39 - tasklist in TaskManagerController::viewTask[com.aravinda.taskmanager.dto.Task@c753249, com.aravinda.taskmanager.dto.Task@146b2ecb]
